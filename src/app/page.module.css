@@ -1,0 +1,88 @@
+.main {
+  padding: 0 16px 16px;
+}
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - 96px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.heroPicture {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.35);
+  z-index: 1;
+}
+
+.heroContent {
+  max-width: 640px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-size: clamp(15px, 2.5vw, 18px);
+  margin-bottom: 32px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.cta {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-text);
+  padding: 16px 40px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 16px;
+  transition: background 0.15s ease;
+}
+
+.cta:hover {
+  background: var(--color-accent-dark);
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 0 12px 12px;
+  }
+
+  .hero {
+    min-height: min(520px, calc(100vh - 88px));
+    padding: 48px 20px;
+    border-radius: var(--radius-md);
+  }
+
+  .cta {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 32px;
+  }
+}

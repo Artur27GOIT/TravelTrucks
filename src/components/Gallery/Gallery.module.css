@@ -1,0 +1,36 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 292px;
+}
+
+.mainSwiper {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.mainImage {
+  width: 100%;
+  height: 312px;
+  object-fit: cover;
+}
+
+.thumbSwiper {
+  width: 100%;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+:global(.swiper-slide-thumb-active) .thumbImage {
+  opacity: 1;
+  outline: 2px solid var(--color-accent);
+}

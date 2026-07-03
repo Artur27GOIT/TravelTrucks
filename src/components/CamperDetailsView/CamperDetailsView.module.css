@@ -1,0 +1,131 @@
+.page {
+  padding: 40px 16px 80px;
+}
+
+.headerBlock {
+  margin-bottom: 32px;
+}
+
+.name {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.rating,
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviewCount {
+  text-decoration: underline;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mainGrid {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.description {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 24px 0;
+  max-width: 600px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 24px;
+}
+
+.tab,
+.tabActive {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+}
+
+.tabActive {
+  color: var(--color-text);
+  border-bottom-color: var(--color-accent);
+}
+
+.featuresBlock {
+  max-width: 600px;
+}
+
+.equipmentList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.equipmentItem {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.specsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specsTable th {
+  text-align: left;
+  padding: 10px 0;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: capitalize;
+  width: 40%;
+}
+
+.specsTable td {
+  padding: 10px 0;
+  text-transform: capitalize;
+}
+
+@media (max-width: 900px) {
+  .mainGrid {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .name {
+    font-size: 26px;
+  }
+
+  .metaRow {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

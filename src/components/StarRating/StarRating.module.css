@@ -1,0 +1,6 @@
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  color: #ffc531;
+  font-size: 16px;
+}
