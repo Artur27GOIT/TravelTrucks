@@ -10,24 +10,45 @@ export default function BookingForm({ camperId }: { camperId: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+  });
+
   const mutation = useMutation({
     mutationFn: submitBooking,
     onSuccess: (data) => {
       toast.success(data.message ?? "Booking request accepted!");
       setName("");
       setEmail("");
+      setErrors({ name: "", email: "" });
     },
     onError: () => {
       toast.error("Something went wrong. Please try again.");
     },
   });
 
+  function validate() {
+    const newErrors: any = {};
+
+    if (!name.trim() || !name.includes(" ")) {
+      newErrors.name = "Please enter your full name.";
+    }
+
+    if (!email.trim() || !email.includes("@")) {
+      newErrors.email = "Invalid email address.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
-      toast.error("Please fill in your name and email.");
-      return;
-    }
+
+    if (!validate()) return;
+
     mutation.mutate({ camperId, name, email });
   }
 
@@ -37,23 +58,62 @@ export default function BookingForm({ camperId }: { camperId: string }) {
       <p className={styles.subtitle}>
         Stay connected! We are always ready to help you.
       </p>
+
       <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Name*"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          className={styles.input}
-          type="email"
-          placeholder="Email*"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* NAME FIELD */}
+        <div className={styles.field}>
+          {/* Контейнер з текстом (появляється тільки при помилці) */}
+          {errors.name && <div className={styles.labelBox}>Name*</div>}
+
+          {/* Інпут */}
+          <div className={styles.inputWrap}>
+            <input
+              className={
+                errors.name
+                  ? `${styles.input} ${styles.inputError}`
+                  : styles.input
+              }
+              type="text"
+              placeholder="Name*"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            {/* Іконка “!” */}
+            {errors.name && <span className={styles.errorIcon}>!</span>}
+          </div>
+
+          {/* Текст помилки */}
+          {errors.name && <p className={styles.errorText}>{errors.name}</p>}
+        </div>
+
+        {/* EMAIL FIELD */}
+        <div className={styles.field}>
+          {/* Контейнер з текстом (появляється тільки при помилці) */}
+          {errors.email && <div className={styles.labelBox}>Email*</div>}
+
+          {/* Інпут */}
+          <div className={styles.inputWrap}>
+            <input
+              className={
+                errors.email
+                  ? `${styles.input} ${styles.inputError}`
+                  : styles.input
+              }
+              type="email"
+              placeholder="Email*"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            {/* Іконка “!” */}
+            {errors.email && <span className={styles.errorIcon}>!</span>}
+          </div>
+
+          {/* Текст помилки */}
+          {errors.email && <p className={styles.errorText}>{errors.email}</p>}
+        </div>
+
         <button
           type="submit"
           className={styles.submit}

@@ -26,7 +26,8 @@
 
 .input,
 .textarea {
-  max-width: 527px;
+  width: 100%;
+  box-sizing: border-box;
   max-height: 60px;
   background-color: #f7f7f7;
   border-radius: 12px;
@@ -67,4 +68,73 @@
 .submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.inputWrap {
+  position: relative;
+  width: 100%;
+}
+
+.inputError {
+  border-color: #e44848;
+  background: #fff5f5;
+  border: 1px solid #e44848 !important;
+}
+.labelError {
+  border-radius: 8px;
+  padding: 0px 8px;
+  width: 54px;
+  height: 16px;
+  padding: 18px;
+  background-color: #e44848;
+  text-align: center;
+}
+.labelBox {
+  border-radius: 8px;
+  padding: 0px 8px;
+  width: 54px;
+  height: 16px;
+
+  background: #fff5f5;
+  color: #e44848;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: -10px;
+  left: 38px;
+  transform: translateX(-50%);
+  z-index: 5;
+  /* або абсолютне позиціонування */
+  /* position: absolute; top: Xpx; left: Xpx; */
+}
+
+.errorIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e44848;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorText {
+  color: #e44848;
+  font-size: 14px;
 }
