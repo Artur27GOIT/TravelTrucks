@@ -57,3 +57,55 @@
 .viewAllBtn:hover {
   background: #6d7b75;
 }
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 32px 16px;
+    max-width: 100%;
+  }
+
+  .image {
+    width: 180px;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .text {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .clearBtn,
+  .viewAllBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) {
+  .wrapper {
+    padding: 36px 20px;
+  }
+
+  .image {
+    width: 200px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+}

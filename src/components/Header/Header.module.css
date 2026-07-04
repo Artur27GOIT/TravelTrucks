@@ -51,3 +51,40 @@
 .active {
   color: #829b91;
 }
+/* MOBILE */
+@media (max-width: 768px) {
+  .inner {
+    padding: 20px 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .logo {
+    position: static;
+    margin-left: 0;
+    font-size: 18px;
+  }
+
+  .nav {
+    gap: 16px;
+  }
+
+  .navLink {
+    font-size: 15px;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) {
+  .inner {
+    padding: 24px 20px;
+  }
+
+  .logo {
+    margin-left: 32px;
+    font-size: 19px;
+  }
+
+  .nav {
+    gap: 20px;
+  }
+}

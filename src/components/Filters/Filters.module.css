@@ -167,3 +167,73 @@
     height: auto;
   }
 }
+/* MOBILE */
+@media (max-width: 768px) {
+  .filters {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .filtersTitle {
+    font-size: 18px;
+    padding-bottom: 20px;
+  }
+
+  .label,
+  .legend {
+    font-size: 14px;
+  }
+
+  .locationInput {
+    padding: 10px 12px;
+  }
+
+  .locationInput input {
+    font-size: 14px;
+  }
+
+  .radioOption {
+    font-size: 13px;
+  }
+
+  .radioMark {
+    width: 20px;
+    height: 20px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .searchButton,
+  .clearButton {
+    width: 100%;
+    max-width: none;
+    height: 50px;
+    font-size: 15px;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) {
+  .filters {
+    width: 300px;
+    height: auto;
+    padding: 22px;
+  }
+
+  .filtersTitle {
+    font-size: 19px;
+  }
+
+  .radioMark {
+    width: 22px;
+    height: 22px;
+  }
+
+  .searchButton,
+  .clearButton {
+    max-width: 280px;
+  }
+}

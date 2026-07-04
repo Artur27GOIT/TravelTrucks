@@ -338,3 +338,149 @@
     gap: 40px;
   }
 }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .page {
+    gap: 40px;
+    padding-top: 24px;
+    padding-bottom: 40px;
+  }
+
+  .topGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .galleryCol {
+    width: 100%;
+  }
+
+  .card {
+    padding: 24px 16px;
+  }
+
+  .name {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .metaRow {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .price {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .chips {
+    gap: 6px;
+  }
+
+  .chip {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .specsTable th,
+  .specsTable td {
+    font-size: 14px;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 32px;
+  }
+
+  .reviewCard {
+    padding: 20px;
+  }
+
+  .reviewHead {
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .reviewText {
+    font-size: 14px;
+  }
+
+  .form {
+    padding: 24px 16px;
+  }
+
+  .formTitle {
+    font-size: 18px;
+  }
+
+  .formSubtitle {
+    font-size: 14px;
+  }
+
+  .input {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .submit {
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) {
+  .page {
+    gap: 50px;
+  }
+
+  .topGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .galleryCol {
+    width: 100%;
+  }
+
+  .card {
+    padding: 28px 20px;
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .chip {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .sectionTitle {
+    font-size: 22px;
+  }
+}

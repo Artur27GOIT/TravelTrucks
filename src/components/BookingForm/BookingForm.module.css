@@ -138,3 +138,69 @@
   color: #e44848;
   font-size: 14px;
 }
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 24px 20px;
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .input,
+  .textarea {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .submit {
+    max-width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .labelBox {
+    top: -14px;
+    left: 32px;
+    width: 48px;
+    height: 14px;
+    font-size: 11px;
+  }
+
+  .errorText {
+    font-size: 13px;
+  }
+}
+/* TABLET */
+@media (max-width: 1024px) {
+  .wrap {
+    padding: 36px 40px;
+    max-width: 90%;
+  }
+
+  .title {
+    font-size: 19px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .submit {
+    max-width: 100%;
+  }
+
+  .labelBox {
+    top: -12px;
+    left: 36px;
+  }
+}
