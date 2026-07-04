@@ -23,7 +23,6 @@ export interface Review {
   createdAt: string;
 }
 
-/** Shared shape returned by both GET /campers (list) and GET /campers/:id (detail). */
 export interface Camper {
   id: string;
   name: string;

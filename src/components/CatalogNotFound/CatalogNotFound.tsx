@@ -9,7 +9,7 @@ export default function CatalogNotFound({ onReset }: { onReset: () => void }) {
   const router = useRouter();
 
   const handleViewAll = () => {
-    onReset(); // очищає ВСЕ: фільтри + поле міста
+    onReset();
     router.push("/catalog");
   };
 

@@ -42,7 +42,6 @@ export default function Filters({ initialFilters, onSearch }: Props) {
   const [engine, setEngine] = useState(initialFilters.engine);
   const [transmission, setTransmission] = useState(initialFilters.transmission);
 
-  // 🔥 ГОЛОВНИЙ ФІКС — синхронізація UI з очищенням фільтрів
   useEffect(() => {
     if (Object.keys(initialFilters).length === 0) {
       setLocation("");

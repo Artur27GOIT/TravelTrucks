@@ -62,10 +62,8 @@ export default function BookingForm({ camperId }: { camperId: string }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         {/* NAME FIELD */}
         <div className={styles.field}>
-          {/* Контейнер з текстом (появляється тільки при помилці) */}
           {errors.name && <div className={styles.labelBox}>Name*</div>}
 
-          {/* Інпут */}
           <div className={styles.inputWrap}>
             <input
               className={
@@ -79,20 +77,15 @@ export default function BookingForm({ camperId }: { camperId: string }) {
               onChange={(e) => setName(e.target.value)}
             />
 
-            {/* Іконка “!” */}
             {errors.name && <span className={styles.errorIcon}>!</span>}
           </div>
 
-          {/* Текст помилки */}
           {errors.name && <p className={styles.errorText}>{errors.name}</p>}
         </div>
 
-        {/* EMAIL FIELD */}
         <div className={styles.field}>
-          {/* Контейнер з текстом (появляється тільки при помилці) */}
           {errors.email && <div className={styles.labelBox}>Email*</div>}
 
-          {/* Інпут */}
           <div className={styles.inputWrap}>
             <input
               className={
@@ -106,11 +99,9 @@ export default function BookingForm({ camperId }: { camperId: string }) {
               onChange={(e) => setEmail(e.target.value)}
             />
 
-            {/* Іконка “!” */}
             {errors.email && <span className={styles.errorIcon}>!</span>}
           </div>
 
-          {/* Текст помилки */}
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
 

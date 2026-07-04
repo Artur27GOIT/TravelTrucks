@@ -1,6 +1,5 @@
 "use client";
 
-import { MdLocationOn } from "react-icons/md";
 import StarRating from "@/components/StarRating/StarRating";
 import Gallery from "@/components/Gallery/Gallery";
 import Reviews from "@/components/Reviews/Reviews";
