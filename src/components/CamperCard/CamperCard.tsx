@@ -1,32 +1,25 @@
 import Image from "next/image";
-import { MdLocationOn, MdLocalGasStation } from "react-icons/md";
-import { TbManualGearbox, TbAutomaticGearbox } from "react-icons/tb";
-import StarRating from "@/components/StarRating/StarRating";
 import type { CamperListItem } from "@/types/camper";
 import styles from "./CamperCard.module.css";
 
 export default function CamperCard({ camper }: { camper: CamperListItem }) {
   const image = camper.gallery?.[0]?.thumb ?? camper.gallery?.[0]?.original;
 
-  // Features exactly like in the mockup: Engine, Transmission, Form
   const features = [
-    camper.engine && {
-      icon: <MdLocalGasStation />,
-      label: camper.engine,
-    },
+    camper.engine && { icon: "icon-doc", label: camper.engine },
     camper.transmission === "automatic" && {
-      icon: <TbAutomaticGearbox />,
+      icon: "icon-filters",
       label: "Automatic",
     },
     camper.transmission === "manual" && {
-      icon: <TbManualGearbox />,
+      icon: "icon-filters",
       label: "Manual",
     },
     camper.form && {
-      icon: null,
+      icon: "icon-truck",
       label: camper.form.replace("_", " "),
     },
-  ].filter(Boolean) as { icon: React.ReactNode; label: string }[];
+  ].filter(Boolean) as { icon: string; label: string }[];
 
   return (
     <li className={styles.card}>
@@ -35,8 +28,8 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
           <Image
             src={image}
             alt={camper.name}
-            width={260}
-            height={200}
+            width={219}
+            height={240}
             className={styles.image}
           />
         ) : (
@@ -52,14 +45,17 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
 
         <div className={styles.metaRow}>
           <span className={styles.rating}>
-            <StarRating rating={camper.rating} />
-            <span className={styles.reviewCount}>
-              ({camper.totalReviews ?? 0} Reviews)
-            </span>
+            <svg width={16} height={16}>
+              <use href="#icon-star" />
+            </svg>
+            {camper.rating}({camper.totalReviews ?? 0} Reviews)
           </span>
 
           <span className={styles.location}>
-            <MdLocationOn /> {camper.location}
+            <svg width={16} height={16}>
+              <use href="#icon-building" />
+            </svg>
+            {camper.location}
           </span>
         </div>
 
@@ -70,13 +66,20 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
         <ul className={styles.features}>
           {features.map((f, i) => (
             <li key={`${f.label}-${i}`} className={styles.feature}>
-              {f.icon}
+              <svg width={16} height={16}>
+                <use href={`#${f.icon}`} />
+              </svg>
               <span>{f.label}</span>
             </li>
           ))}
         </ul>
 
-        <a href={`/catalog/${camper.id}`} className={styles.showMore}>
+        <a
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.showMore}
+        >
           Show more
         </a>
       </div>

@@ -113,8 +113,8 @@ export default function Filters({ initialFilters, onSearch }: Props) {
           Location
         </label>
         <div className={styles.locationInput}>
-          <svg className={styles.locationIcon} width={20} height={20}>
-            <use href="/img/sprite.svg#icon-building" />
+          <svg className={styles.locationIcon} width={15} height={15}>
+            <use href="#icon-building" />
           </svg>
           <input
             id="location"

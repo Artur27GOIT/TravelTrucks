@@ -54,8 +54,8 @@ h4,
 h5,
 p {
   margin: 0;
-  font-weight: 700;
-  color: var(--color-white);
+  /* font-weight: 700; */
+  /* color: var(--color-white); */
   line-height: 1.2;
 }
 /* Links */
