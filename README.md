@@ -5,8 +5,8 @@
 ## Що реалізовано
 
 - **/** — банер з фоновим зображенням і кнопкою *View Now*, яка веде в каталог
-- **/catalog** — список кемперів, фільтри (локація, тип кузова, двигун, трансмісія), пагінація через *Load More* — по 4 картки за раз
-- **/catalog/[camperId]** — повна інформація про кемпер, галерея на Swiper, відгуки зі зірками, форма бронювання
+- **/catalog** — список кемперів, фільтри (локація, тип кузова, двигун, трансмісія), пагінація через *Load More* - по 4 картки за раз
+- **/catalog/[camperId]** - повна інформація про кемпер, галерея на Swiper, відгуки зі зірками, форма бронювання
 
 Фільтрація й пагінація працюють через бекенд (query-параметри). Для списку використовується `useInfiniteQuery` з TanStack Query. Кнопка *Show more* на картці відкриває деталі в новій вкладці.
 
@@ -34,11 +34,11 @@ npm run start
 
 Базовий URL: `https://campers-api.goit.study`
 
-- `GET /campers` — список (page, perPage, location, form, transmission, engine)
-- `GET /campers/{id}` — один кемпер
-- `GET /campers/{id}/reviews` — відгуки
-- `GET /campers/filters` — значення для фільтрів
-- `POST /campers/{id}/booking-requests` — бронювання (`name`, `email`)
+- `GET /campers`- список (page, perPage, location, form, transmission, engine)
+- `GET /campers/{id}`- один кемпер
+- `GET /campers/{id}/reviews` - відгуки
+- `GET /campers/filters` - значення для фільтрів
+- `POST /campers/{id}/booking-requests` - бронювання (`name`, `email`)
 
 ## Автор
 
