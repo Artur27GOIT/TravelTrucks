@@ -35,8 +35,8 @@ export default function Gallery({
             <Image
               src={img.original}
               alt={`${alt} — photo ${i + 1}`}
-              width={292}
-              height={312}
+              width={638}
+              height={505}
               className={styles.mainImage}
             />
           </SwiperSlide>

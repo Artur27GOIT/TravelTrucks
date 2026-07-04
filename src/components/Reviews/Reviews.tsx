@@ -11,12 +11,17 @@ export default function Reviews({ reviews }: { reviews: Review[] }) {
     <ul className={styles.list}>
       {reviews.map((review, i) => (
         <li key={i} className={styles.item}>
-          <div className={styles.avatar}>
-            {review.reviewer_name?.[0]?.toUpperCase() ?? "?"}
+          <div className={styles.container}>
+            <div className={styles.avatar}>
+              {review.reviewer_name?.[0]?.toUpperCase() ?? "?"}
+            </div>
+            <div>
+              <p className={styles.name}>{review.reviewer_name}</p>
+              <StarRating rating={review.reviewer_rating} />
+            </div>
           </div>
+
           <div>
-            <p className={styles.name}>{review.reviewer_name}</p>
-            <StarRating rating={review.reviewer_rating} />
             <p className={styles.comment}>{review.comment}</p>
           </div>
         </li>
