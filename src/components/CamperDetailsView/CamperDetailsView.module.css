@@ -21,10 +21,16 @@
 .infoCol {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
+.galleryCol {
+  width: 292px;
+}
+/* .gallery {
+  width: 638px !important;
+} */
 
-/* ===== ГАЛЕРЕЯ ===== */
+/* ===== ГАЛЕРЕЯ =====
 .gallery {
   display: flex;
   flex-direction: column;
@@ -70,7 +76,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
+} */
 
 /* ===== КАРТКА ===== */
 .card {
@@ -197,7 +203,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: end;
 }
 .reviewsCol,
 .formCol {

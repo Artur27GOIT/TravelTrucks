@@ -3,7 +3,7 @@ import type { CamperListItem } from "@/types/camper";
 import styles from "./CamperCard.module.css";
 
 export default function CamperCard({ camper }: { camper: CamperListItem }) {
-  const image = camper.gallery?.[0]?.thumb ?? camper.gallery?.[0]?.original;
+  const image = camper.coverImage;
 
   const features = [
     camper.engine && { icon: "icon-doc", label: camper.engine },
@@ -20,6 +20,7 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
       label: camper.form.replace("_", " "),
     },
   ].filter(Boolean) as { icon: string; label: string }[];
+  console.log(camper.gallery);
 
   return (
     <li className={styles.card}>

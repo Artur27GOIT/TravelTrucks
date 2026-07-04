@@ -1,18 +1,20 @@
 .wrap {
-  background: var(--color-white);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  max-width: 400px;
+  border: 1px solid #dadde1;
+  border-radius: 16px;
+  padding: 44px 57px;
+  max-width: 641px;
+  max-height: 382px;
 }
 
 .title {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   font-size: 20px;
 }
 
 .subtitle {
   margin: 0 0 24px;
-  color: var(--color-text-muted);
+  color: #6c717b;
+  opacity: 70%;
   font-size: 14px;
 }
 
@@ -24,9 +26,12 @@
 
 .input,
 .textarea {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 14px 16px;
+  max-width: 527px;
+  max-height: 60px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  border: 0;
+  padding: 18px;
   font-size: 15px;
   font-family: inherit;
   outline: none;
@@ -34,7 +39,7 @@
 
 .input:focus,
 .textarea:focus {
-  border-color: var(--color-accent);
+  border-color: #dad5d5;
 }
 
 .textarea {
@@ -42,18 +47,21 @@
 }
 
 .submit {
-  background: var(--color-accent);
+  background: #829b91;
   color: var(--color-white);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 200px;
   padding: 16px;
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   font-size: 16px;
   margin-top: 8px;
+  max-width: 527px;
+  max-height: 56px;
 }
 
 .submit:hover {
-  background: var(--color-accent-dark);
+  background: #6d7b75;
 }
 
 .submit:disabled {

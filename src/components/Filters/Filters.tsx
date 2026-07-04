@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import type {
   CamperFilters,
@@ -34,47 +34,6 @@ const TRANSMISSION_LABELS: Record<Transmission, string> = {
   manual: "Manual",
 };
 
-const FALLBACK_FORMS: CamperForm[] = [
-  "alcove",
-  "panel_van",
-  "integrated",
-  "semi_integrated",
-];
-const FALLBACK_ENGINES: Engine[] = ["diesel", "petrol", "hybrid", "electric"];
-const FALLBACK_TRANSMISSIONS: Transmission[] = ["automatic", "manual"];
-
-function RadioGroup<T extends string>({
-  name,
-  options,
-  labels,
-  value,
-  onChange,
-}: {
-  name: string;
-  options: T[];
-  labels: Record<T, string>;
-  value: T | undefined;
-  onChange: (v: T | undefined) => void;
-}) {
-  return (
-    <div className={styles.options}>
-      {options.map((opt) => (
-        <label key={opt} className={styles.radioOption}>
-          <input
-            type="radio"
-            name={name}
-            checked={value === opt}
-            onChange={() => onChange(opt)}
-            onClick={() => value === opt && onChange(undefined)}
-          />
-          <span className={styles.radioMark} />
-          {labels[opt]}
-        </label>
-      ))}
-    </div>
-  );
-}
-
 export default function Filters({ initialFilters, onSearch }: Props) {
   const { data: availableFilters } = useAvailableFilters();
 
@@ -82,6 +41,16 @@ export default function Filters({ initialFilters, onSearch }: Props) {
   const [form, setForm] = useState(initialFilters.form);
   const [engine, setEngine] = useState(initialFilters.engine);
   const [transmission, setTransmission] = useState(initialFilters.transmission);
+
+  // 🔥 ГОЛОВНИЙ ФІКС — синхронізація UI з очищенням фільтрів
+  useEffect(() => {
+    if (Object.keys(initialFilters).length === 0) {
+      setLocation("");
+      setForm(undefined);
+      setEngine(undefined);
+      setTransmission(undefined);
+    }
+  }, [initialFilters]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -101,10 +70,22 @@ export default function Filters({ initialFilters, onSearch }: Props) {
     onSearch({});
   }
 
-  const forms = availableFilters?.forms ?? FALLBACK_FORMS;
-  const engines = availableFilters?.engines ?? FALLBACK_ENGINES;
-  const transmissions =
-    availableFilters?.transmissions ?? FALLBACK_TRANSMISSIONS;
+  const forms = availableFilters?.forms ?? [
+    "alcove",
+    "panel_van",
+    "integrated",
+    "semi_integrated",
+  ];
+  const engines = availableFilters?.engines ?? [
+    "diesel",
+    "petrol",
+    "hybrid",
+    "electric",
+  ];
+  const transmissions = availableFilters?.transmissions ?? [
+    "automatic",
+    "manual",
+  ];
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
@@ -130,35 +111,61 @@ export default function Filters({ initialFilters, onSearch }: Props) {
 
       <fieldset className={styles.group}>
         <legend className={styles.legend}>Camper form</legend>
-        <RadioGroup
-          name="form"
-          options={forms}
-          labels={FORM_LABELS}
-          value={form}
-          onChange={setForm}
-        />
+        <div className={styles.options}>
+          {forms.map((opt) => (
+            <label key={opt} className={styles.radioOption}>
+              <input
+                type="radio"
+                name="form"
+                checked={form === opt}
+                onChange={() => setForm(opt)}
+                onClick={() => form === opt && setForm(undefined)}
+              />
+              <span className={styles.radioMark} />
+              {FORM_LABELS[opt]}
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className={styles.group}>
         <legend className={styles.legend}>Engine</legend>
-        <RadioGroup
-          name="engine"
-          options={engines}
-          labels={ENGINE_LABELS}
-          value={engine}
-          onChange={setEngine}
-        />
+        <div className={styles.options}>
+          {engines.map((opt) => (
+            <label key={opt} className={styles.radioOption}>
+              <input
+                type="radio"
+                name="engine"
+                checked={engine === opt}
+                onChange={() => setEngine(opt)}
+                onClick={() => engine === opt && setEngine(undefined)}
+              />
+              <span className={styles.radioMark} />
+              {ENGINE_LABELS[opt]}
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <fieldset className={styles.group}>
         <legend className={styles.legend}>Transmission</legend>
-        <RadioGroup
-          name="transmission"
-          options={transmissions}
-          labels={TRANSMISSION_LABELS}
-          value={transmission}
-          onChange={setTransmission}
-        />
+        <div className={styles.options}>
+          {transmissions.map((opt) => (
+            <label key={opt} className={styles.radioOption}>
+              <input
+                type="radio"
+                name="transmission"
+                checked={transmission === opt}
+                onChange={() => setTransmission(opt)}
+                onClick={() =>
+                  transmission === opt && setTransmission(undefined)
+                }
+              />
+              <span className={styles.radioMark} />
+              {TRANSMISSION_LABELS[opt]}
+            </label>
+          ))}
+        </div>
       </fieldset>
 
       <div className={styles.buttons}>

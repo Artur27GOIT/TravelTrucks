@@ -46,7 +46,7 @@ export default function Gallery({
       <Swiper
         onSwiper={setThumbsSwiper}
         modules={[FreeMode, Thumbs]}
-        spaceBetween={16}
+        spaceBetween={32}
         slidesPerView={Math.min(images.length, 4)}
         freeMode
         watchSlidesProgress
@@ -57,8 +57,8 @@ export default function Gallery({
             <Image
               src={img.thumb}
               alt={`${alt} — thumbnail ${i + 1}`}
-              width={134}
-              height={100}
+              width={136}
+              height={144}
               className={styles.thumbImage}
             />
           </SwiperSlide>

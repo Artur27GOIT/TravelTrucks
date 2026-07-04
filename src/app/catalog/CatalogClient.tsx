@@ -7,6 +7,7 @@ import Loader from "@/components/Loader/Loader";
 import { useCampers } from "@/hooks/useCampers";
 import type { CamperFilters } from "@/types/camper";
 import styles from "./catalog.module.css";
+import CatalogNotFound from "@/components/CatalogNotFound/CatalogNotFound";
 
 export default function CatalogClient() {
   const [filters, setFilters] = useState<CamperFilters>({});
@@ -22,7 +23,7 @@ export default function CatalogClient() {
 
   const campers = useMemo(
     () => data?.pages.flatMap((page) => page.campers) ?? [],
-    [data]
+    [data],
   );
 
   const showLoader = isLoading || isFetchingNextPage;
@@ -41,9 +42,7 @@ export default function CatalogClient() {
         )}
 
         {!isLoading && !isError && campers.length === 0 && (
-          <p className={styles.empty}>
-            No campers match your filters. Try adjusting your search.
-          </p>
+          <CatalogNotFound onReset={() => setFilters({})} />
         )}
 
         <ul className={styles.list}>
@@ -53,10 +52,7 @@ export default function CatalogClient() {
         </ul>
 
         {hasNextPage && !isFetchingNextPage && (
-          <button
-            className={styles.loadMore}
-            onClick={() => fetchNextPage()}
-          >
+          <button className={styles.loadMore} onClick={() => fetchNextPage()}>
             Load More
           </button>
         )}
