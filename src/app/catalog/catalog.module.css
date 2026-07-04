@@ -1,8 +1,8 @@
 .layout {
   display: flex;
-  gap: 32px;
+  gap: 65px;
   padding-top: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 52px;
   align-items: flex-start;
 }
 

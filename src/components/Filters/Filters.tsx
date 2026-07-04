@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { MdLocationOn } from "react-icons/md";
-import { TbManualGearbox } from "react-icons/tb";
 import { useAvailableFilters } from "@/hooks/useAvailableFilters";
-import type { CamperFilters, CamperForm, Engine, Transmission } from "@/types/camper";
+import type {
+  CamperFilters,
+  CamperForm,
+  Engine,
+  Transmission,
+} from "@/types/camper";
 import styles from "./Filters.module.css";
 
 interface Props {
@@ -14,8 +17,8 @@ interface Props {
 
 const FORM_LABELS: Record<CamperForm, string> = {
   alcove: "Alcove",
-  panel_van: "Van",
-  integrated: "Fully Integrated",
+  panel_van: "Panel Van",
+  integrated: "Integrated",
   semi_integrated: "Semi Integrated",
 };
 
@@ -31,10 +34,46 @@ const TRANSMISSION_LABELS: Record<Transmission, string> = {
   manual: "Manual",
 };
 
-// Sensible fallback in case the /campers/filters request hasn't resolved yet.
-const FALLBACK_FORMS: CamperForm[] = ["alcove", "panel_van", "integrated", "semi_integrated"];
+const FALLBACK_FORMS: CamperForm[] = [
+  "alcove",
+  "panel_van",
+  "integrated",
+  "semi_integrated",
+];
 const FALLBACK_ENGINES: Engine[] = ["diesel", "petrol", "hybrid", "electric"];
 const FALLBACK_TRANSMISSIONS: Transmission[] = ["automatic", "manual"];
+
+function RadioGroup<T extends string>({
+  name,
+  options,
+  labels,
+  value,
+  onChange,
+}: {
+  name: string;
+  options: T[];
+  labels: Record<T, string>;
+  value: T | undefined;
+  onChange: (v: T | undefined) => void;
+}) {
+  return (
+    <div className={styles.options}>
+      {options.map((opt) => (
+        <label key={opt} className={styles.radioOption}>
+          <input
+            type="radio"
+            name={name}
+            checked={value === opt}
+            onChange={() => onChange(opt)}
+            onClick={() => value === opt && onChange(undefined)}
+          />
+          <span className={styles.radioMark} />
+          {labels[opt]}
+        </label>
+      ))}
+    </div>
+  );
+}
 
 export default function Filters({ initialFilters, onSearch }: Props) {
   const { data: availableFilters } = useAvailableFilters();
@@ -44,22 +83,28 @@ export default function Filters({ initialFilters, onSearch }: Props) {
   const [engine, setEngine] = useState(initialFilters.engine);
   const [transmission, setTransmission] = useState(initialFilters.transmission);
 
-  function toggle<T>(
-    value: T,
-    current: T | undefined,
-    setter: (v: T | undefined) => void
-  ) {
-    setter(current === value ? undefined : value);
-  }
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onSearch({ location: location.trim() || undefined, form, engine, transmission });
+    onSearch({
+      location: location.trim() || undefined,
+      form,
+      engine,
+      transmission,
+    });
+  }
+
+  function handleClear() {
+    setLocation("");
+    setForm(undefined);
+    setEngine(undefined);
+    setTransmission(undefined);
+    onSearch({});
   }
 
   const forms = availableFilters?.forms ?? FALLBACK_FORMS;
   const engines = availableFilters?.engines ?? FALLBACK_ENGINES;
-  const transmissions = availableFilters?.transmissions ?? FALLBACK_TRANSMISSIONS;
+  const transmissions =
+    availableFilters?.transmissions ?? FALLBACK_TRANSMISSIONS;
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
@@ -68,7 +113,9 @@ export default function Filters({ initialFilters, onSearch }: Props) {
           Location
         </label>
         <div className={styles.locationInput}>
-          <MdLocationOn className={styles.locationIcon} />
+          <svg className={styles.locationIcon} width={20} height={20}>
+            <use href="/img/sprite.svg#icon-building" />
+          </svg>
           <input
             id="location"
             type="text"
@@ -79,59 +126,54 @@ export default function Filters({ initialFilters, onSearch }: Props) {
         </div>
       </div>
 
+      <h3 className={styles.filtersTitle}>Filters</h3>
+
       <fieldset className={styles.group}>
-        <legend className={styles.legend}>
-          <TbManualGearbox /> Transmission
-        </legend>
-        <div className={styles.options}>
-          {transmissions.map((t) => (
-            <button
-              type="button"
-              key={t}
-              className={transmission === t ? styles.optionActive : styles.option}
-              onClick={() => toggle(t, transmission, setTransmission)}
-            >
-              {TRANSMISSION_LABELS[t]}
-            </button>
-          ))}
-        </div>
+        <legend className={styles.legend}>Camper form</legend>
+        <RadioGroup
+          name="form"
+          options={forms}
+          labels={FORM_LABELS}
+          value={form}
+          onChange={setForm}
+        />
       </fieldset>
 
       <fieldset className={styles.group}>
         <legend className={styles.legend}>Engine</legend>
-        <div className={styles.options}>
-          {engines.map((eOpt) => (
-            <button
-              type="button"
-              key={eOpt}
-              className={engine === eOpt ? styles.optionActive : styles.option}
-              onClick={() => toggle(eOpt, engine, setEngine)}
-            >
-              {ENGINE_LABELS[eOpt]}
-            </button>
-          ))}
-        </div>
+        <RadioGroup
+          name="engine"
+          options={engines}
+          labels={ENGINE_LABELS}
+          value={engine}
+          onChange={setEngine}
+        />
       </fieldset>
 
       <fieldset className={styles.group}>
-        <legend className={styles.legend}>Vehicle type</legend>
-        <div className={styles.options}>
-          {forms.map((b) => (
-            <button
-              type="button"
-              key={b}
-              className={form === b ? styles.optionActive : styles.option}
-              onClick={() => toggle(b, form, setForm)}
-            >
-              {FORM_LABELS[b]}
-            </button>
-          ))}
-        </div>
+        <legend className={styles.legend}>Transmission</legend>
+        <RadioGroup
+          name="transmission"
+          options={transmissions}
+          labels={TRANSMISSION_LABELS}
+          value={transmission}
+          onChange={setTransmission}
+        />
       </fieldset>
 
-      <button type="submit" className={styles.searchButton}>
-        Search
-      </button>
+      <div className={styles.buttons}>
+        <button type="submit" className={styles.searchButton}>
+          Search
+        </button>
+        <button
+          type="button"
+          className={styles.clearButton}
+          onClick={handleClear}
+        >
+          <span className={styles.clearIcon}>×</span>
+          <span>Clear filters</span>
+        </button>
+      </div>
     </form>
   );
 }

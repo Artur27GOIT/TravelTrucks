@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import QueryProvider from "@/components/providers/QueryProvider";
 import Header from "@/components/Header/Header";
 import "./globals.css";
+import IconSprite from "@/components/IconSprite/IconSprite";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <IconSprite />
         <QueryProvider>
           <Header />
           {children}

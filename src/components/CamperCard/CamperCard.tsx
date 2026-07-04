@@ -1,37 +1,19 @@
 import Image from "next/image";
-import {
-  MdLocationOn,
-  MdAcUnit,
-  MdKitchen,
-  MdBathtub,
-  MdTv,
-  MdRadio,
-  MdMicrowave,
-  MdOutlineKitchen,
-  MdLocalGasStation,
-  MdOutlineWaterDrop,
-} from "react-icons/md";
+import { MdLocationOn, MdLocalGasStation } from "react-icons/md";
 import { TbManualGearbox, TbAutomaticGearbox } from "react-icons/tb";
 import StarRating from "@/components/StarRating/StarRating";
 import type { CamperListItem } from "@/types/camper";
 import styles from "./CamperCard.module.css";
 
-const AMENITY_ICONS: Record<string, { icon: React.ReactNode; label: string }> = {
-  ac: { icon: <MdAcUnit />, label: "AC" },
-  bathroom: { icon: <MdBathtub />, label: "Bathroom" },
-  kitchen: { icon: <MdKitchen />, label: "Kitchen" },
-  tv: { icon: <MdTv />, label: "TV" },
-  radio: { icon: <MdRadio />, label: "Radio" },
-  refrigerator: { icon: <MdOutlineKitchen />, label: "Refrigerator" },
-  microwave: { icon: <MdMicrowave />, label: "Microwave" },
-  gas: { icon: <MdLocalGasStation />, label: "Gas" },
-  water: { icon: <MdOutlineWaterDrop />, label: "Water" },
-};
-
 export default function CamperCard({ camper }: { camper: CamperListItem }) {
   const image = camper.gallery?.[0]?.thumb ?? camper.gallery?.[0]?.original;
 
+  // Features exactly like in the mockup: Engine, Transmission, Form
   const features = [
+    camper.engine && {
+      icon: <MdLocalGasStation />,
+      label: camper.engine,
+    },
     camper.transmission === "automatic" && {
       icon: <TbAutomaticGearbox />,
       label: "Automatic",
@@ -40,8 +22,10 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
       icon: <TbManualGearbox />,
       label: "Manual",
     },
-    camper.engine && { icon: <MdLocalGasStation />, label: camper.engine },
-    ...(camper.amenities ?? []).map((a) => AMENITY_ICONS[a] ?? { icon: null, label: a }),
+    camper.form && {
+      icon: null,
+      label: camper.form.replace("_", " "),
+    },
   ].filter(Boolean) as { icon: React.ReactNode; label: string }[];
 
   return (
@@ -51,8 +35,8 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
           <Image
             src={image}
             alt={camper.name}
-            width={292}
-            height={312}
+            width={260}
+            height={200}
             className={styles.image}
           />
         ) : (
@@ -73,6 +57,7 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
               ({camper.totalReviews ?? 0} Reviews)
             </span>
           </span>
+
           <span className={styles.location}>
             <MdLocationOn /> {camper.location}
           </span>
@@ -91,12 +76,7 @@ export default function CamperCard({ camper }: { camper: CamperListItem }) {
           ))}
         </ul>
 
-        <a
-          href={`/catalog/${camper.id}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.showMore}
-        >
+        <a href={`/catalog/${camper.id}`} className={styles.showMore}>
           Show more
         </a>
       </div>
